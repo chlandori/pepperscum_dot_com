@@ -1,0 +1,50 @@
+
+body {
+      background: url("assets/bg_tile.png") repeat;
+      color: #00ff99;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+    }
+a { color: #ffcc00; text-decoration: underline; }
+.container { width: 900px; margin: 0 auto; border: 3px ridge #00ffff; background: #000000cc; }
+.banner { text-align: center; padding: 10px; }
+.nav { text-align: center; padding: 8px; background: #001a1a; }
+.nav a { margin: 0 6px; }
+hr { height: 8px; border: none; background: linear-gradient(90deg, #1a0010, #00ff00, #00ff00, #00ff00, #00ff00, #ff00ff00) }
+.marquee { background: #110011; color: #fff; padding: 6px; }
+.blink { animation: blink 1s steps(1, end) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.content { padding: 16px; }
+.footer { text-align: center; color: #cccccc; font-size: 12px; padding: 10px; }
+.table-wrap { width: 100%; }
+.sidebar { width: 120px; vertical-align: top; background: #001111; }
+.main { vertical-align: top; }
+
+
+.icon-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background-color: #001111;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+  background-color: #e0e0e0; /* Lightens on hover */
+  color: #020202;
+}
+
+.icon {
+  margin-bottom: 6px;
+}
+
+.icon-label {
+  font-size: 14px;
+}
+
+.icon-label:hover {
+  font-size: 14px;
+  color: #020202;
+}
