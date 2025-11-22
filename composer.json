@@ -1,0 +1,26 @@
+{
+    "name": "chlandori/pepperscum_dot_com",
+    "description": "The official Pepperscum website",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Chlandori\\PepperscumDotCom\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t public",
+        "migrate": "php scripts/migrate.php",
+        "test": "php vendor/bin/phpunit --testdox"
+    },
+    "authors": [
+        {
+            "name": "c.landry",
+            "email": "38585729+chlandori@users.noreply.github.com"
+        }
+    ]
+}

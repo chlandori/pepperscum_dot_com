@@ -1,9 +1,5 @@
 
-body {
-      background: url("assets/bg_tile.png") repeat;
-      color: #00ff99;
-      font-family: Verdana, Arial, Helvetica, sans-serif;
-    }
+
 a { color: #ffcc00; text-decoration: underline; }
 .container { width: 900px; margin: 0 auto; border: 3px ridge #00ffff; background: #000000cc; }
 .banner { text-align: center; padding: 10px; }
