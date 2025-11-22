@@ -12,15 +12,24 @@
 </form>
 
 <hr>
+<?php if (!empty($_SESSION['is_admin'])): ?>
+<pre>
++----------------------------------+
+|   MODERATOR MODE ACTIVE 🔒      |
++----------------------------------+
+</pre>
+<a href="index.php?page=admin&action=logout">[Logout]</a>
+<?php endif; ?>
 
 <?php if (!empty($entries)): ?>
     <?php foreach ($entries as $entry): ?>
         <pre>
 +--------------------------------------------------+
-| <?= htmlspecialchars($entry['name']) ?> wrote: 
+| <?= htmlspecialchars($entry['name']) ?> wrote:
 | <?= htmlspecialchars($entry['message']) ?>
-| [<?= $entry['created_at'] ?>]
-+--------------------------------------------------+
+| [<?= $entry['created_at'] ?>]<?php if (!empty($_SESSION['is_admin'])): ?><a href="index.php?page=guestbook&action=delete&id=<?= $entry['id'] ?>"
+       onclick="return confirm('Delete this entry?');">[Delete]</a><?php endif; ?>
+<br>+--------------------------------------------------+
         </pre>
     <?php endforeach; ?>
 <?php else: ?>

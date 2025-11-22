@@ -21,6 +21,8 @@ class GuestbookController
      */
     public function index()
     {
+        session_start(); // resume session
+
         $entries    = $this->guestbook->getEntries();
         $hitCounter = $this->hitCounter; // pass into layout/footer
         $view       = __DIR__ . '/../views/guestbook/index.php';
@@ -68,8 +70,13 @@ class GuestbookController
      */
     public function delete($id)
     {
+        session_start();
+        if (empty($_SESSION['is_admin'])) {
+            die("Unauthorized");
+        }
+
         $this->guestbook->deleteEntry($id);
-        header("Location: /guestbook");
+        header("Location: /public/index.php?page=guestbook");
         exit;
     }
 }

@@ -17,12 +17,24 @@ require_once __DIR__ . '/../app/config.php';
 // Basic routing
 $page = $_GET['page'] ?? 'home';
 $action = $_GET['action'] ?? 'index';
-
+$id = $_GET['id'] ??'';
 switch ($page) {
+    case 'admin':
+        $controller = new AdminController($db);
+        if ($action === 'authenticate') {
+            $controller->authenticate();
+        } elseif ($action === 'logout') {
+            $controller->logout();
+        } else {
+            $controller->login();
+        }
+        break;
     case 'guestbook':
         $controller = new GuestbookController($db);
         if ($action === 'store') {
             $controller->store();
+        } elseif ($action === 'delete' && !empty($id)) {
+            $controller->delete($id);
         } else {
             $controller->index();
         }
