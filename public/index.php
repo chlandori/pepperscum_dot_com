@@ -25,6 +25,8 @@ switch ($page) {
             $controller->authenticate();
         } elseif ($action === 'logout') {
             $controller->logout();
+        } elseif ($action === 'panel') {
+            $controller->panel();
         } else {
             $controller->login();
         }

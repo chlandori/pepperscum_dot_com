@@ -4,10 +4,12 @@ require_once __DIR__ . '/../config.php';
 
 class AdminController
 {
+    private $db;
     private $hitCounter;
 
     public function __construct($db)
     {
+        $this->db = $db;
         $this->hitCounter = new HitCounter($db);
     }
 
@@ -44,4 +46,28 @@ class AdminController
         $view = __DIR__ . '/../views/admin/logout.php';
         include __DIR__ . '/../views/layout.php';
     }
+
+    public function panel()
+    {
+        session_start();
+        if (empty($_SESSION['is_admin'])) {
+            die("Unauthorized");
+        }
+
+        // Gather stats
+        $entriesCount = $this->getEntriesCount();
+        $hitsCount    = $this->hitCounter->getHits('footer');
+
+        $hitCounter   = $this->hitCounter;
+        $view         = __DIR__ . '/../views/admin/panel.php';
+        include __DIR__ . '/../views/layout.php';
+    }
+
+    private function getEntriesCount()
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) AS cnt FROM guestbook");
+        $row  = $stmt->fetch_assoc();
+        return $row['cnt'] ?? 0;
+    }
+
 }

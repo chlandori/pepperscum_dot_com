@@ -18,7 +18,9 @@
 |   MODERATOR MODE ACTIVE 🔒      |
 +----------------------------------+
 </pre>
+<a href="index.php?page=admin&action=panel">[Admin Panel]</a>
 <a href="index.php?page=admin&action=logout">[Logout]</a>
+
 <?php endif; ?>
 
 <?php if (!empty($entries)): ?>
