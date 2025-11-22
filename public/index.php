@@ -16,11 +16,16 @@ require_once __DIR__ . '/../app/config.php';
 
 // Basic routing
 $page = $_GET['page'] ?? 'home';
+$action = $_GET['action'] ?? 'index';
 
 switch ($page) {
     case 'guestbook':
         $controller = new GuestbookController($db);
-        $controller->index();
+        if ($action === 'store') {
+            $controller->store();
+        } else {
+            $controller->index();
+        }
         break;
 
     case 'music':

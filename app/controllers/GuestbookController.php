@@ -39,12 +39,12 @@ class GuestbookController
 
             if (!empty($name) && !empty($message)) {
                 $this->guestbook->addEntry($name, $message);
-                header("Location: /guestbook");
+                header("Location: /public/index.php?page=guestbook");
                 exit;
             } else {
                 $error      = "Name and message are required.";
                 $hitCounter = $this->hitCounter;
-                $view       = __DIR__ . '/../views/guestbook/form.php';
+                $view       = __DIR__ . '/../views/guestbook/index.php';
 
                 include __DIR__ . '/../views/layout.php';
             }
