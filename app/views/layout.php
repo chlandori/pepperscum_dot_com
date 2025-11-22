@@ -71,7 +71,9 @@
 <div class="footer">
     <p>&copy; <?php echo date('Y'); ?> Pepperscum — Revived from GeoCities!.</p>
     <p class="arcade">Hits <?= $hitCounter->getHits($pageName) ?></p>
-
+    <p>
+        <a href="index.php?page=privacy">Privacy Policy</a>
+    </p>
 </div>
   
 </body>

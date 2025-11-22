@@ -46,7 +46,10 @@ switch ($page) {
         $controller = new MusicController($db);
         $controller->index();
         break;
-
+    case 'privacy':
+        $controller = new PrivacyController($db);
+        $controller->index();
+        break;
     default:
         $controller = new HomeController($db);
         $controller->index();
