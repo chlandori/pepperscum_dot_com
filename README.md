@@ -3,27 +3,6 @@
 A retro‑inspired band archive and CI/CD playground.  
 This project blends modular PHP MVC design with MariaDB, GitHub Actions, and playful retro features like guestbooks and hit counters.
 
----
-
-## 📂 Project Structure
-├── public/              # Web root (index.php, assets, CSS/JS) 
-  ├── app/                 # Core MVC app 
-  │   ├── controllers/     # Route controllers 
-  │   ├── models/          # Database models 
-  │   ├── views/           # Templates (retro HTML, ASCII flair) 
-  │   └── config.php       # DB connection (loads from .env) 
-  ├── scripts/             # Utility scripts 
-  │   └── migrate.php      # Bootstrap DB tables (guestbook, hit counter) 
-  ├── tests/               # PHPUnit tests 
-  ├── vendor/              # Composer dependencies 
-  ├── .env                 # Local environment variables (not committed) 
-  ├── .env.example         # Template for collaborators 
-  ├── .gitignore           # Ignore secrets, build artifacts 
-  └── .github/workflows/   # CI/CD pipelines 
-      └── ci.yml           # GitHub Actions workflo
-
----
-
 ## ⚙️ Setup for Developers
 
 ### 1. Prerequisites
@@ -87,17 +66,17 @@ GitHub Actions (ci.yml) spins up MariaDB in a container and runs migrations/test
 - Run scripts/migrate.php
 - Run PHPUnit tests
 
-🕹️ Retro Features
+# 🕹️ Retro Features
 - Guestbook: Leave messages like it’s 1999.
 - Hit Counter: Track page visits with old‑school flair.
 - ASCII Branding: Sprinkle nostalgia across views and dashboards.
 
-🔒 Security & Onboarding
+# 🔒 Security & Onboarding
 - Never commit .env — use .env.example for templates.
 - Use GitHub Secrets for CI/CD credentials.
 - Standardized onboarding: clone → composer install → copy .env.example → run migrations.
 
-📜 License
+# 📜 License
 MIT — remix, extend, and enjoy.
 
 ---
