@@ -59,6 +59,7 @@ class AdminController
         $homeHitsCount    = $this->hitCounter->getHits('home');
         $musicHitsCount    = $this->hitCounter->getHits('music');
         $guestbookHitsCount    = $this->hitCounter->getHits('guestbook');
+        $privacyHitsCount    = $this->hitCounter->getHits('privacy');
         $view         = __DIR__ . '/../views/admin/panel.php';
         include __DIR__ . '/../views/layout.php';
     }
