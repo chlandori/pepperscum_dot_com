@@ -44,3 +44,10 @@ hr { height: 8px; border: none; background: linear-gradient(90deg, #1a0010, #00f
   font-size: 14px;
   color: #020202;
 }
+
+.arcade {
+  font-family: 'Press Start 2P', monospace; /* Google Fonts retro arcade */
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  font-size: 2em;
+}

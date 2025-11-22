@@ -14,11 +14,16 @@ class MusicController
 
     public function index()
     {
-        $hitCounter = $this->hitCounter;
-        // Point to the view file
-        $view = __DIR__ . '/../views/music/index.php';
+        session_start();
 
-        // Let layout.php handle injecting the view
+        if (empty($_SESSION['hit_music'])) {
+            $this->hitCounter->recordHit('music');
+            $_SESSION['hit_music'] = true;
+        }
+
+        $hitCounter = $this->hitCounter;
+        $pageName   = 'music'; // current page
+        $view = __DIR__ . '/../views/music/index.php';
         include __DIR__ . '/../views/layout.php';
     }
 }

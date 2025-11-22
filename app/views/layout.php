@@ -64,10 +64,14 @@
   </table>
 
   <hr>
+<style>
+
+</style>
 
 <div class="footer">
     <p>&copy; <?php echo date('Y'); ?> Pepperscum — Revived from GeoCities!.</p>
-    <p>Hits: <?php echo $hitCounter->getHits('footer'); ?></p>
+    <p class="arcade">Hits <?= $hitCounter->getHits($pageName) ?></p>
+
 </div>
   
 </body>

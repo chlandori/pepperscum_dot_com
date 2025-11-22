@@ -56,9 +56,9 @@ class AdminController
 
         // Gather stats
         $entriesCount = $this->getEntriesCount();
-        $hitsCount    = $this->hitCounter->getHits('footer');
-
-        $hitCounter   = $this->hitCounter;
+        $homeHitsCount    = $this->hitCounter->getHits('home');
+        $musicHitsCount    = $this->hitCounter->getHits('music');
+        $guestbookHitsCount    = $this->hitCounter->getHits('guestbook');
         $view         = __DIR__ . '/../views/admin/panel.php';
         include __DIR__ . '/../views/layout.php';
     }

@@ -11,7 +11,9 @@
 </pre>
 
 <p>Total Guestbook Entries: <strong><?= $entriesCount ?></strong></p>
-<p>Total Site Hits: <strong><?= $hitsCount ?></strong></p>
+<p>Total Home Hits: <strong><?= $homeHitsCount ?></strong></p>
+<p>Total Music Hits: <strong><?= $musicHitsCount ?></strong></p>
+<p>Total Guestbook Hits: <strong><?= $guestbookHitsCount ?></strong></p>
 
 <ul>
     <li><a href="index.php?page=guestbook">View Guestbook</a></li>

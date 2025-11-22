@@ -23,8 +23,14 @@ class GuestbookController
     {
         session_start(); // resume session
 
+        if (empty($_SESSION['hit_guestbook'])) {
+            $this->hitCounter->recordHit('guestbook');
+            $_SESSION['hit_guestbook'] = true;
+        }
+
         $entries    = $this->guestbook->getEntries();
         $hitCounter = $this->hitCounter; // pass into layout/footer
+        $pageName   = 'guestbook'; // current page
         $view       = __DIR__ . '/../views/guestbook/index.php';
 
         include __DIR__ . '/../views/layout.php';
