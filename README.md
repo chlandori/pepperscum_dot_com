@@ -50,7 +50,7 @@ net start MariaDB
 Run PHP's built-in server:
 
 ``` powershell
-php -S localhost:8000 -t public
+php -S localhost:8000 -t pepperscum.com
 ```
 
 Visit: [http://localhost:8000](http://localhost:8000)
