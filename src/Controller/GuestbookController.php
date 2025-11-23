@@ -40,7 +40,7 @@ class GuestbookController
 
             if (!empty($name) && !empty($message)) {
                 $this->guestbook->addEntry($name, $message);
-                header("Location: /public/index.php?page=guestbook");
+                header("Location: /index.php?page=guestbook");
                 exit;
             } else {
                 $error = "Name and message are required.";
@@ -61,7 +61,7 @@ class GuestbookController
         }
 
         $this->guestbook->deleteEntry($id);
-        header("Location: /public/index.php?page=guestbook");
+        header("Location: /index.php?page=guestbook");
         exit;
     }
 }

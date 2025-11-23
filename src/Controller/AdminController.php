@@ -29,7 +29,7 @@ class AdminController
 
         if ($password === ($_ENV['ADMIN_PASSWORD'] ?? '')) {
             $_SESSION['is_admin'] = true;
-            header("Location: /public/index.php?page=guestbook");
+            header("Location: /index.php?page=guestbook");
             exit;
         } else {
             $error      = "Invalid password.";

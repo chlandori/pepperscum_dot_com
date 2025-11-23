@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 $db = new mysqli(
@@ -14,3 +14,4 @@ $db = new mysqli(
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
+
