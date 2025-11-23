@@ -16,6 +16,7 @@ class AdminController
     public function login()
     {
         $hitCounter = $this->hitCounter; // make available to layout
+        $pageName = 'admin';
         $view = __DIR__ . '/../views/admin/login.php';
         include __DIR__ . '/../views/layout.php';
     }
@@ -32,6 +33,7 @@ class AdminController
         } else {
             $error = "Invalid password.";
             $hitCounter = $this->hitCounter;
+            $pageName = 'admin';
             $view  = __DIR__ . '/../views/admin/login.php';
             include __DIR__ . '/../views/layout.php';
         }
@@ -43,6 +45,7 @@ class AdminController
         session_destroy();
 
         $hitCounter = $this->hitCounter;
+        $pageName = 'admin';
         $view = __DIR__ . '/../views/admin/logout.php';
         include __DIR__ . '/../views/layout.php';
     }
@@ -60,6 +63,8 @@ class AdminController
         $musicHitsCount    = $this->hitCounter->getHits('music');
         $guestbookHitsCount    = $this->hitCounter->getHits('guestbook');
         $privacyHitsCount    = $this->hitCounter->getHits('privacy');
+        $hitCounter = $this->hitCounter;
+        $pageName = 'admin';
         $view         = __DIR__ . '/../views/admin/panel.php';
         include __DIR__ . '/../views/layout.php';
     }
