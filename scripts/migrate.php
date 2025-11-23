@@ -1,53 +1,44 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/config.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+echo "\n";
+echo "=============================================\n";
+echo "   PEPPERSCUM.COM MIGRATION CONSOLE v1.0     \n";
+echo "=============================================\n";
+echo ">> INITIATING MIGRATION SEQUENCE...\n\n";
 
-// Connect using environment variables
-$mysqli = new mysqli(
-    $_ENV['DB_HOST'],
-    $_ENV['DB_USER'],
-    $_ENV['DB_PASS'],
-    $_ENV['DB_NAME']
-);
-
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+// 🔽 LOADING BAR GOES HERE
+for ($i = 0; $i <= 20; $i++) {
+    echo "[" . str_repeat("=", $i) . str_repeat(" ", 20 - $i) . "]\r";
+    usleep(100000); // 0.1s delay
 }
+echo "\n>> MIGRATION ENGINES ONLINE.\n\n";
 
-// Guestbook table
-$guestbook = "
+// Now run your SQL
+$sql = "
 CREATE TABLE IF NOT EXISTS guestbook (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    message TEXT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    message VARCHAR(150) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 ";
 
-// Hit counter table
-$hitcounter = "
-CREATE TABLE IF NOT EXISTS hit_counter (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    page VARCHAR(255) NOT NULL,
-    hits INT DEFAULT 0,
-    last_hit TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
-";
-
-// Run migrations
-if ($mysqli->query($guestbook) === TRUE) {
-    echo "Guestbook table ready.\n";
+if ($db->query($sql) === TRUE) {
+    echo ">> Guestbook table migrated successfully.\n";
 } else {
-    echo "Error creating guestbook: " . $mysqli->error . "\n";
+    echo "!! ERROR: " . $db->error . "\n";
 }
 
-if ($mysqli->query($hitcounter) === TRUE) {
-    echo "Hit counter table ready.\n";
+$sqlAlter = "ALTER TABLE guestbook MODIFY message VARCHAR(150) NOT NULL;";
+if ($db->query($sqlAlter) === TRUE) {
+    echo ">> Column 'message' capped at 150 characters.\n";
 } else {
-    echo "Error creating hit counter: " . $mysqli->error . "\n";
+    echo ">> Column already capped or alter failed: " . $db->error . "\n";
 }
 
-$mysqli->close();
-?>
+echo "\n";
+echo "=============================================\n";
+echo "   MIGRATION COMPLETE — SYSTEM STABLE         \n";
+echo "=============================================\n";
+echo ">> READY FOR NEXT COMMAND...\n";

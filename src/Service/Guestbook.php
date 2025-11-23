@@ -1,29 +1,31 @@
 <?php
+namespace Chlandori\PepperscumDotCom\Service;
+
 class Guestbook
 {
-    private $db;
+    private \mysqli $db;
 
-    public function __construct($mysqli)
+    public function __construct(\mysqli $mysqli)
     {
         $this->db = $mysqli;
     }
 
-    /**
-     * Add a new guestbook entry
-     */
-    public function addEntry($name, $message)
+    public function addEntry(string $name, string $message): bool
     {
+        if (strlen($name) > 50 || strlen($message) > 150) {
+            return false; // or throw an exception
+        }
+
         $stmt = $this->db->prepare(
-            "INSERT INTO guestbook (name, message) VALUES (?, ?)"
+            "INSERT INTO guestbook (name, message, created_at) VALUES (?, ?, NOW())"
         );
         $stmt->bind_param("ss", $name, $message);
-        return $stmt->execute();
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
     }
 
-    /**
-     * Get all guestbook entries (newest first)
-     */
-    public function getEntries()
+    public function getEntries(): array
     {
         $result = $this->db->query(
             "SELECT id, name, message, created_at
@@ -35,13 +37,11 @@ class Guestbook
         while ($row = $result->fetch_assoc()) {
             $entries[] = $row;
         }
+        $result->free();
         return $entries;
     }
 
-    /**
-     * Find a single entry by ID
-     */
-    public function getEntryById($id)
+    public function getEntryById(int $id): ?array
     {
         $stmt = $this->db->prepare(
             "SELECT id, name, message, created_at
@@ -50,18 +50,20 @@ class Guestbook
         );
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result();
+        $entry  = $result->fetch_assoc() ?: null;
+        $stmt->close();
+        return $entry;
     }
 
-    /**
-     * Delete an entry by ID
-     */
-    public function deleteEntry($id)
+    public function deleteEntry(int $id): bool
     {
         $stmt = $this->db->prepare(
             "DELETE FROM guestbook WHERE id = ?"
         );
         $stmt->bind_param("i", $id);
-        return $stmt->execute();
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
     }
 }

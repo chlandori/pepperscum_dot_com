@@ -1,4 +1,6 @@
 <?php
+namespace Chlandori\PepperscumDotCom\Service;
+
 class HitCounter
 {
     private $db;
@@ -26,8 +28,6 @@ class HitCounter
 
         $stmt->close();
     }
-
-
 
     public function getHits($page)
     {

@@ -3,10 +3,10 @@
 
 <form action="index.php?page=guestbook&action=store" method="POST">
     <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+    <input type="text" id="name" name="name" maxlength="50" required><br><br>
 
     <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="4" cols="40" required></textarea><br><br>
+    <textarea id="message" name="message" rows="4" cols="40" maxlength="150" required></textarea><br><br>
 
     <button type="submit">Sign Guestbook</button>
 </form>
